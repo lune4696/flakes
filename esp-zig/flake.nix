@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zig-shell = {
-      url = "github:lune4696/flakes/zig";
+      url = "github:lune4696/flakes?dir=zig";
     }; 
   };
 
