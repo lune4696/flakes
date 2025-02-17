@@ -88,12 +88,8 @@
           overlays = [zig-overlay.overlays.default];
           pkgs = import nixpkgs { inherit system overlays;  };
         in {
-          default = with pkgs; [
-            stdenv
-            blas
-            zig
-            zls
-          ];
+          blas = pkgs.blas;
+          zig = pkgs.zig;
         });
     }; 
 }
