@@ -55,7 +55,7 @@
               cloc              # 行数カウンタ
               fzf               # fuzzy finder
               glxinfo           # GPU状態チェック
-              hx                # editor
+              helix                # editor
               lsof              # 同上
               valgrind          # メモリリークチェック
               # GPGPU
