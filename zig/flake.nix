@@ -55,8 +55,9 @@
               cloc              # 行数カウンタ
               fzf               # fuzzy finder
               glxinfo           # GPU状態チェック
-              valgrind          # メモリリークチェック
+              hx                # editor
               lsof              # 同上
+              valgrind          # メモリリークチェック
               # GPGPU
               rocmPackages.hipblas # rocblas/cublasをバックエンドに取るhip環境におけるblasライブラリ
               rocmPackages.rocblas # roc版blas
