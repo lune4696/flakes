@@ -1,15 +1,11 @@
 {
-  description = "Zig development environment with Nix flakes";
+  description = "Python deep learning development environment with Nix flakes";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
-    zig-overlay = {
-      url = "github:mitchellh/zig-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, zig-overlay }: 
+  outputs = { self, nixpkgs }: 
     let
       systems = [
         "aarch64-darwin"
@@ -23,22 +19,41 @@
      # for nix develop command
       devShells = forAllSystems (system: 
         let
-          overlays = [zig-overlay.overlays.default];
-          pkgs = import nixpkgs { inherit system overlays; };
+          pkgs = import nixpkgs { inherit system; };
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              # 基本ライブラリ
+            # 基本ライブラリ
               stdenv
               pkgconf
               # 線形演算ライブラリ
               blas
               lapack
               # 言語別ライブラリ
-              zig
-              zls
-              # 依存パッケージ
-              raylib            # 描画と入出力全般を担当
+              python312.withPackages (p: [
+                # common libs
+                p.pandas
+                p.numpy
+                p.matplotlib
+                p.plotly
+                # pytorch
+                p.torch
+                p.botorch
+                p.pytorch-lightning
+                p.torch-geometric
+                #p.torchWithRocm
+                #p.torchWithCuda
+                # pytorch utility
+                p.torchvision
+                p.torchaudio
+                # pytorch utility-optim
+                p.pytorch-msssim
+                # pytorch utility-info
+                p.torchinfo
+                p.torchmetrics
+                # pytorch models
+                p.transformers
+              ])
               # linux
               alsa-lib          # オーディオ周りを使用する場合は無いとコンパイルできない(はず)
               # OpenGL
@@ -80,23 +95,12 @@
             shellHook = ''
               export PATH=${self}/bin:$PATH
               export PS1="\n⛄\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w]\$ \[\033[0m\]"
-              export SDL_GAMECONTROLLERCONFIG="045e,028e,Microsoft X-box 360 Pad"
               clear
               echo -e "\nWelcome to zig devShell!"
             '';
           };
         }
       );
-
-     # for nix build command
-      packages = forAllSystems (system: 
-        let
-          overlays = [zig-overlay.overlays.default];
-          pkgs = import nixpkgs { inherit system overlays;  };
-        in {
-          blas = pkgs.blas;
-          zig = pkgs.zig;
-        });
     }; 
 }
 
