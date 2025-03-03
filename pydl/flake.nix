@@ -31,6 +31,8 @@
               lapack
               # 言語別ライブラリ
               (python312.withPackages (p: [
+                # lsp
+                p.python-lsp-server
                 # common libs
                 p.pandas
                 p.numpy
