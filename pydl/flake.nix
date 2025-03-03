@@ -54,6 +54,7 @@
                 # pytorch models
                 p.transformers
               ]))
+              pyright
               # linux
               alsa-lib          # オーディオ周りを使用する場合は無いとコンパイルできない(はず)
               # OpenGL
