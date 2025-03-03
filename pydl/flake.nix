@@ -30,7 +30,7 @@
               blas
               lapack
               # 言語別ライブラリ
-              python312.withPackages (p: [
+              (python312.withPackages (p: [
                 # common libs
                 p.pandas
                 p.numpy
@@ -53,7 +53,7 @@
                 p.torchmetrics
                 # pytorch models
                 p.transformers
-              ])
+              ]))
               # linux
               alsa-lib          # オーディオ周りを使用する場合は無いとコンパイルできない(はず)
               # OpenGL
