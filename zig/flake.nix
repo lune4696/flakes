@@ -62,8 +62,7 @@
               cloc              # 行数カウンタ
               fzf               # fuzzy finder
               glxinfo           # GPU状態チェック
-              helix                # editor
-              lsof              # 同上
+              helix             # editor
               valgrind          # メモリリークチェック
               # GPGPU
               rocmPackages.rocblas # roc版blas
@@ -80,7 +79,7 @@
             shellHook = ''
               export PATH=${self}/bin:$PATH
               export PS1="\n⛄\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w]\$ \[\033[0m\]"
-              export SDL_GAMECONTROLLERCONFIG="045e,028e,Microsoft X-box 360 Pad"
+              #export SDL_GAMECONTROLLERCONFIG="045e,028e,Microsoft X-box 360 Pad"
               clear
               echo -e "\nWelcome to zig devShell!"
             '';
