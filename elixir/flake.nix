@@ -30,8 +30,6 @@
               blas
               lapack
               # 言語別ライブラリ
-              zig
-              zls
               elixir
               elixir-ls
               # 依存パッケージ
