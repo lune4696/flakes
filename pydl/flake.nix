@@ -47,6 +47,8 @@
                 p.pytorch-lightning
                 p.torch-geometric
                 p.torchmetrics
+                #gpu monitoring
+                nvtopPackages.full
               ]))
               pyright
               # linux
