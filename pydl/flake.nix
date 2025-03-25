@@ -44,21 +44,9 @@
                 p.plotly
                 # pytorch
                 p.torch
-                #p.torchWithRocm
-                #p.torchWithCuda
-                p.botorch
                 p.pytorch-lightning
                 p.torch-geometric
-                # pytorch utility
-                #p.torchvision
-                #p.torchaudio
-                # pytorch utility-optim
-                #p.pytorch-msssim
-                # pytorch utility-info
-                #p.torchinfo
                 p.torchmetrics
-                # pytorch models
-                #p.transformers
               ]))
               pyright
               # linux
@@ -85,75 +73,6 @@
               glxinfo           # GPU状態チェック
               helix             # editor
               valgrind          # メモリリークチェック
-              # GPGPU
-              #rocmPackages.rpp
-              #rocmPackages.rpp-hip
-              #rocmPackages.rpp-cpu
-              #rocmPackages.rpp-opencl
-
-              #rocmPackages.rocblas
-              rocmPackages.rocwmma
-              #rocmPackages.rocrand
-              #rocmPackages.rocprim
-              #rocmPackages.rocgdb
-              #rocmPackages.rocdbgapi
-              rocmPackages.rocfft
-              #rocmPackages.roctracer
-              rocmPackages.rocthrust
-              rocmPackages.rocsparse
-              rocmPackages.rocsolver
-              rocmPackages.rocalution
-              #rocmPackages.rocprofiler
-
-              rocmPackages.rocminfo
-              #rocmPackages.rocmlir
-              #rocmPackages.rocm-smi
-              rocmPackages.rocm-core
-              #rocmPackages.rocm-device-libs
-              rocmPackages.rocm-runtime
-              #rocmPackages.rocm-docs-core
-              #rocmPackages.rocm-thunk
-              #rocmPackages.rocm-comgr
-              #rocmPackages.rocm-cmake
-
-              #rocmPackages.rdc
-              #rocmPackages.clr
-              rocmPackages.rccl
-              #rocmPackages.half
-              #rocmPackages.tensile
-              #rocmPackages.clang-ocl
-              #rocmPackages.rocr-debug-agent
-              rocmPackages.composable_kernel
-
-              rocmPackages.hipcc
-              rocmPackages.hipify
-              rocmPackages.hipfft
-              rocmPackages.hipcub
-              rocmPackages.hiprand
-              rocmPackages.hipfort
-              rocmPackages.hipblas
-              rocmPackages.hipsparse
-              rocmPackages.hip-common
-
-              rocmPackages.miopen
-              rocmPackages.migraphx
-              rocmPackages.mivisionx
-              rocmPackages.mivisionx-hip
-              #rocmPackages.mivisionx-cpu
-
-              #rocmPackages.llvm.bintools
-              #rocmPackages.llvm.clang
-              #rocmPackages.llvm.lld
-              #rocmPackages.llvm.mlir
-              #rocmPackages.llvm.llvm
-              #rocmPackages.llvm.lldb
-              #rocmPackages.llvm.libc
-              #rocmPackages.llvm.openmp
-              #rocmPackages.llvm.libcxx
-              #rocmPackages.llvm.libclc
-              #rocmPackages.llvm.libcxxabi
-              #rocmPackages.llvm.rocmClangStdenv
-              #rocmPackages.llvm.clang-tools-extra
             ];
 
             NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.pkgconf pkgs.raylib ];
