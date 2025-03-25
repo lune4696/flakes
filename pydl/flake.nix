@@ -75,7 +75,7 @@
               valgrind          # メモリリークチェック
             ];
 
-            NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.pkgconf pkgs.raylib ];
+            NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.pkgconf ];
             LD_LIBRARY_PATH = "$(nix-build '<nixpkgs>' -A wayland)/lib";
 
             # 環境変数設定 (オプション)
