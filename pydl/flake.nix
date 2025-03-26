@@ -44,11 +44,8 @@
                 p.plotly
                 # pytorch
                 p.torch
-                p.pytorch-lightning
                 p.torch-geometric
-                p.torchmetrics
-                #gpu monitoring
-                nvtopPackages.full
+                p.networkx      # グラフ描画用
               ]))
               pyright
               # linux
