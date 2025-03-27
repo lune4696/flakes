@@ -9,7 +9,7 @@
     }; 
   };
 
-  outputs = { self, nixpkgs }: 
+  outputs = { self, nixpkgs, pydl-shell }: 
     let
       systems = [
         "aarch64-darwin"
@@ -27,7 +27,9 @@
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
         in {
           default = pkgs.mkShell {
-            packages = with pkgs; [
+              inputsFrom = [pydl-shell.devShells.${system}.default];
+              
+              packages = with pkgs; [
               nvtopPackages.nvidia
               (python312.withPackages (p: [
                 # pytorch
