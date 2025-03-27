@@ -25,6 +25,9 @@
         let
           #pkgs = import nixpkgs { inherit system; config.allowBroken = true; };
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+          torch-geometric-cuda = pkgs.python312Packages.torch-geometric.override {
+            torch = pkgs.python312Packages.torchWithCuda;
+          };
         in {
           default = pkgs.mkShell {
               inputsFrom = [pydl-shell.devShells.${system}.default];
@@ -33,9 +36,9 @@
               
               packages = with pkgs; [
               nvtopPackages.nvidia
+              # pytorch
+              torch-geometric-cuda
               (python312.withPackages (p: [
-                # pytorch
-                p.torch-geometric
                 p.networkx      # グラフ描画用
               ]))
             ];
