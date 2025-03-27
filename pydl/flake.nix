@@ -77,16 +77,12 @@
             NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.pkgconf ];
             LD_LIBRARY_PATH = "$(nix-build '<nixpkgs>' -A wayland)/lib";
 
-            # 環境変数設定 (オプション)
-            ZIG_CACHE_DIR = "./.zig-cache"; # Zigのビルドキャッシュディレクトリ
-            ZIG_GLOBAL_CACHE_DIR = "./.global_cache"; # グローバルキャッシュ
-
             # export NIXPKGS_ALLOW_BROKEN=1はtorchWithRocmの為
             shellHook = ''
               export PATH=${self}/bin:$PATH
               export PS1="\n⛄\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w]\$ \[\033[0m\]"
               clear
-              echo -e "\nWelcome to zig devShell!"
+              echo -e "\nWelcome to pydl devShell!"
             '';
           };
         }
