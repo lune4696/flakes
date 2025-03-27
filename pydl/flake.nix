@@ -42,10 +42,6 @@
                 p.numpy
                 p.matplotlib
                 p.plotly
-                # pytorch
-                p.torch
-                p.torch-geometric
-                p.networkx      # グラフ描画用
               ]))
               pyright
               # linux

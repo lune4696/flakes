@@ -34,6 +34,7 @@
                 # pytorch
                 p.torch
                 p.torch-geometric
+                p.networkx      # グラフ描画用
               ]))
             ];
 

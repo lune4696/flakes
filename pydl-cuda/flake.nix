@@ -35,6 +35,7 @@
                 # pytorch
                 p.torchWithCuda
                 p.torch-geometric
+                p.networkx      # グラフ描画用
               ]))
             ];
 

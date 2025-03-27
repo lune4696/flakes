@@ -35,6 +35,7 @@
                 # pytorch
                 p.torch # torchWithRocmはbrokenなので使えない
                 p.torch-geometric
+                p.networkx      # グラフ描画用
               ]))
             ];
 
