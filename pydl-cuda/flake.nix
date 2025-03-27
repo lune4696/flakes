@@ -28,12 +28,13 @@
         in {
           default = pkgs.mkShell {
               inputsFrom = [pydl-shell.devShells.${system}.default];
+
+              buildInputs = [pkgs.python312Packages.torchWithCuda];
               
               packages = with pkgs; [
               nvtopPackages.nvidia
               (python312.withPackages (p: [
                 # pytorch
-                p.torchWithCuda
                 p.torch-geometric
                 p.networkx      # グラフ描画用
               ]))
