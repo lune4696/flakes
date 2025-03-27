@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
     pydl-shell = {
       url = "github:lune4696/flakes?dir=pydl";
-      nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     }; 
   };
 
@@ -31,7 +31,7 @@
               nvtopPackages.nvidia
               (python312.withPackages (p: [
                 # pytorch
-                p.torch
+                p.torchWithCuda
                 p.torch-geometric
               ]))
             ];
