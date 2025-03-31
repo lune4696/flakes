@@ -28,27 +28,30 @@
           torch-geometric-cuda = pkgs.python312Packages.torch-geometric.override {
             torch = pkgs.python312Packages.torchWithCuda;
           };
+          libs = with pkgs; [
+            nvtopPackages.nvidia
+            # pytorch
+            torch-geometric-cuda
+            (python312.withPackages (p: [
+              p.networkx      # グラフ描画用
+            ]))
+          ];
         in {
           default = pkgs.mkShell {
-              inputsFrom = [pydl-shell.devShells.${system}.default];
+            inputsFrom = [pydl-shell.devShells.${system}.default];
 
-              buildInputs = [pkgs.python312Packages.torchWithCuda];
-              
-              packages = with pkgs; [
-              nvtopPackages.nvidia
-              # pytorch
-              torch-geometric-cuda
-              (python312.withPackages (p: [
-                p.networkx      # グラフ描画用
-              ]))
-            ];
+            buildInputs = [pkgs.python312Packages.torchWithCuda];
+            
+            packages = libs;
+
+            NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libs;
 
             # export NIXPKGS_ALLOW_BROKEN=1はtorchWithRocmの為
             shellHook = ''
               export PATH=${self}/bin:$PATH
               export PS1="\n⛄\[\033[1;32m\][\[\e]0;\u@\h: \w\a\]\u@\h:\w]\$ \[\033[0m\]"
               clear
-              echo -e "\nWelcome to pydl-nvidia devShell!"
+              echo -e "\nWelcome to pydl-cuda devShell!"
             '';
           };
         }
