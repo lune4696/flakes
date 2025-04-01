@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
     pydl-shell = {
-      url = "github:lune4696/flakes?dir=pydl";
+      url = "github:lune4696/flakes?dir=pydl&ref=sandbox";
       inputs.nixpkgs.follows = "nixpkgs";
     }; 
   };
