@@ -38,10 +38,12 @@
                 # lsp
                 p.python-lsp-server
                 # common libs
-                p.pandas
                 p.numpy
                 p.matplotlib
+                p.pandas
                 p.plotly
+                p.scipy
+                p.scikit-learn
               ]))
               pyright
               # linux
