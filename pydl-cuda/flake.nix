@@ -25,42 +25,21 @@
         let
           #pkgs = import nixpkgs { inherit system; config.allowBroken = true; };
           pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-          torchWithCudaMKL = pkgs.python312Packages.torchWithCuda.overrideAttrs (old: {
-            buildInputs = old.buildInputs ++ [ pkgs.mkl ];
-            cmakeFlags = old.cmakeFlags ++ [ "-DUSE_MKL=ON" ];
-          });
-          torch-geometric-2_5_1 = pkgs.python312Packages.torch-geometric.overrideAttrs (oldAttrs: {
-            src = pkgs.fetchFromGitHub {
-              owner = "pyg-team";
-              repo = "pytorch_geometric";
-              rev = "2.5.1";
-              hash = "sha256-341pDcevG3KSV3aE2FoXaEWgb/a9N7gI9tQrHKDI4cU";
-            };
-            propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-              pkgs.python312Packages.scipy
-              pkgs.python312Packages.scikit-learn
-            ];
-          });
-          torch-geometric-cuda-2_5_1 = torch-geometric-2_5_1.override {
-            torch = torchWithCudaMKL;
+          torch-geometric-cuda = pkgs.python312Packages.torch-geometric.override {
+            torch = pkgs.python312Packages.torchWithCuda;
           };
-          libs = with pkgs; [
-            nvtopPackages.nvidia
-            # pytorch
-            torch-geometric-cuda-2_5_1
-            (python312.withPackages (p: [
-              p.networkx      # グラフ描画用
-            ]))
-          ];
         in {
           default = pkgs.mkShell {
             inputsFrom = [pydl-shell.devShells.${system}.default];
 
-            buildInputs = [pkgs.python312Packages.torchWithCuda];
-            
-            packages = libs;
-
-            NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libs;
+            packages = with pkgs; [
+            nvtopPackages.nvidia
+            # pytorch
+            torch-geometric-cuda
+            (python312.withPackages (p: [
+              p.networkx      # グラフ描画用
+            ]))
+          ];
 
             # export NIXPKGS_ALLOW_BROKEN=1はtorchWithRocmの為
             shellHook = ''
