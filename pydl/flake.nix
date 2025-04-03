@@ -44,6 +44,7 @@
                 p.plotly
                 p.scipy
                 p.scikit-learn
+                p.ruff
               ]))
               pyright
               # linux
